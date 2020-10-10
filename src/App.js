@@ -10,20 +10,37 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       // put data fetching code here!
-    };
-
-    if (isEmpty(fetchedData)) {
+	  const response = await fetch(
+        "http://demo1390455.mockable.io/articles"
+      )
+	  const rspJson = await response.json();
+      setFetchedData(rspJson);
+    }
+	  
+  if (!fetchedData.length) {
       fetchData();
     }
   }, [fetchedData]);
 
+  let displayContent;
+
+  if (fetchedData.length > 0) {
+	displayContent = (
+		<div className="App">
+		  <Switch>
+			<Route>
+			  {Object.values(fetchedData).map((data) => (<DynamicArticle article={data}/>))}
+			</Route>
+		  </Switch>
+		</div>
+	);
+  } else {
+    displayContent = <div>You have no data!</div>;
+  }
+
   return isEmpty(fetchedData) ? null : (
-    <div className="App">
-      <Switch>
-        <Route>
-          <DynamicArticle article={Object.values(fetchedData)[1]} />
-        </Route>
-      </Switch>
+	<div className="App">
+      {displayContent}
     </div>
   );
 }
