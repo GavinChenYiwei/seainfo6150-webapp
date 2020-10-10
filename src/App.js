@@ -17,14 +17,14 @@ function App() {
       setFetchedData(rspJson);
     }
 	  
-  if (!fetchedData.length) {
+  if (isEmpty(fetchData)) {
       fetchData();
     }
   }, [fetchedData]);
 
   let displayContent;
 
-  if (fetchedData.length > 0) {
+  if (!isEmpty(fetchedData)) {
 	displayContent = (
 		<div className="App">
 		  <Switch>
