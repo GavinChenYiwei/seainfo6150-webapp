@@ -1,0 +1,11 @@
+.image {
+    margin-top: 1.2em;
+    margin-bottom: 1em;
+    border-radius: 70%;
+    border:solid 1em #ff0000;
+    width: 50%;
+    height:auto;
+    transform: scale(1,1.1);
+    box-shadow: 0em 0.3em 0.3em rgba(0,0,0,0.5);
+
+}
